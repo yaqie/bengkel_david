@@ -13,8 +13,10 @@ class Master extends CI_Controller{
     }
 
     function index(){
+        $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();
         $data=array(
             'title'=>'Master Data',
+            'jamoperasional'=>$jamoperasional,
             'active_master'=>'active',
             'kd_part'=>$this->MyModel->getKodeBarang(),
             'kd_pelanggan'=>$this->MyModel->getKodePelanggan(),
@@ -115,6 +117,15 @@ class Master extends CI_Controller{
             'desc'=>$this->input->post('desc'),
         );
         $this->MyModel->updateData('contact',$data,$id);
+        redirect("master");
+    }
+    function edit_jam(){
+        $id['bagian'] = 'jam_operasional';
+        $data=array(
+            'text1'=> $this->input->post('jadwal1'),
+            'text2'=> $this->input->post('jadwal2'),
+        );
+        $this->MyModel->updateData('setting',$data,$id);
         redirect("master");
     }
     function edit_user(){

@@ -20,7 +20,7 @@
 		      <li class="nav-item">
             <a class="nav-link" href="#tabPart"  data-toggle="tab">Sparepart</a>
           </li>
-		  </li>
+		  <!-- </li> -->
 		      <li class="nav-item">
             <a class="nav-link" href="#tabService"  data-toggle="tab">Service</a>
           </li>
@@ -31,16 +31,16 @@
             <a class="nav-link" href="#tabContact"  data-toggle="tab">Identitas</a>
           </li>
         </ul>
-<div class="tab-content">
-    <div class="tab-pane active" id="home"><br>ValconWare</div>
-    <div class="tab-pane fade" id="tabPelanggan"><br><?php $this->load->view('pages/v_tab_master_pelanggan')?></div>
-    <div class="tab-pane fade" id="tabKendaraan"><br>Halaman belum tersedia</div>
-    <div class="tab-pane fade" id="tabPemasok"><br>Halaman belum tersedia</div>
-	<div class="tab-pane fade" id="tabService"><br><?php $this->load->view('pages/v_tab_master_service')?></div>
-    <div class="tab-pane fade" id="tabPart"><br><?php $this->load->view('pages/v_tab_master_part')?></div>
-    <div class="tab-pane fade" id="tabUser"><br><?php $this->load->view('pages/v_tab_master_user')?></div>
-    <div class="tab-pane fade" id="tabContact"><br><?php $this->load->view('pages/v_tab_master_contact')?></div>
-</div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home"><br><?php $this->load->view('pages/v_tab_buka_tutup')?></div>
+            <div class="tab-pane fade" id="tabPelanggan"><br><?php $this->load->view('pages/v_tab_master_pelanggan')?></div>
+            <div class="tab-pane fade" id="tabKendaraan"><br>Halaman belum tersedia</div>
+            <div class="tab-pane fade" id="tabPemasok"><br>Halaman belum tersedia</div>
+          <div class="tab-pane fade" id="tabService"><br><?php $this->load->view('pages/v_tab_master_service')?></div>
+            <div class="tab-pane fade" id="tabPart"><br><?php $this->load->view('pages/v_tab_master_part')?></div>
+            <div class="tab-pane fade" id="tabUser"><br><?php $this->load->view('pages/v_tab_master_user')?></div>
+            <div class="tab-pane fade" id="tabContact"><br><?php $this->load->view('pages/v_tab_master_contact')?></div>
+        </div>
 
       </div>
     </div>

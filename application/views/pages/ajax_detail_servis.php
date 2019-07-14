@@ -12,6 +12,7 @@ if(isset($detail_layanan)){
     <label class="form-label">Biaya</label>
     <input name="harga" type="text" value="<?php echo currency_format($row->harga); ?>" 
 	class="form-control" readonly>
+    <input name="harga2" type="hidden" value="<?php echo $row->harga; ?>" >
 </fieldset>
     <?php
     }

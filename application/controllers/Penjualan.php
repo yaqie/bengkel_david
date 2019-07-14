@@ -15,7 +15,7 @@ class Penjualan extends CI_Controller{
         $data=array(
             'title'=>'Transaksi',
             'active_penjualan'=>'active',
-            'data_penjualan'=>$this->MyModel->getAllDataPenjualan(),
+            'data_penjualan'=>$this->MyModel->getAllDataPenjualan()
         );
         $this->load->view('element/header',$data);
         $this->load->view('pages/v_penjualan');
@@ -92,6 +92,7 @@ class Penjualan extends CI_Controller{
     }
 //Masukan data dari session ke database
     function simpan_penjualan(){
+        // echo $this->input->post('harga2');
         $data = array(
             'kd_transaksi'=>$this->input->post('kd_transaksi'),
             'kd_pelanggan'=>$this->input->post('kd_pelanggan'),

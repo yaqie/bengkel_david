@@ -57,7 +57,7 @@
             <label class="control-label"> <strong>Daftar Pelanggan</strong></label>
             <div class="controls">
             <select id="kd_pelanggan" tabindex="5" class="chz-select form-control" 
-			name="kd_pelanggan" data-placeholder="Pilih Pelanggan">
+			name="kd_pelanggan" data-placeholder="Pilih Pelanggan" required>
             <option value=""></option>
             <?php
             if(isset($data_pelanggan)){
@@ -76,7 +76,7 @@
 	  <label class="control-label"> <strong>Layanan Service</strong></label>
             <div class="controls">
             <select  id="id_servis" tabindex="5" class="chz-select form-control" name="id_servis" 
-			data-placeholder="Pilih Layanan">
+			data-placeholder="Pilih Layanan" required>
             <option value=""></option>
              <?php
                 if(isset($data_layanan)){
@@ -108,7 +108,7 @@
 <div class="row">
   <div class="col-9"></div>
   <div class="col-9 col-lg-3" align="right"> 
-	<button type="submit" class="btn btn-primary">Save</button>
+	<button type="submit" class="btn btn-primary">Simpan</button>
     <a href="<?php echo site_url('penjualan')?>" class="btn btn-danger">Cancel</a>
   </div>
 </div>
@@ -144,6 +144,10 @@
                         ?>
                     </select>
                 </fieldset>
+                <!-- <fieldset class="form-group">
+                    <label class="form-label">Jumlah Beli</label><br>
+                    <input type="text" name="jumlah">
+                </fieldset> -->
           </div>
         </div>
 		

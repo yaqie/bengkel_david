@@ -58,10 +58,10 @@
         </div>
     </div>
 
-
     <div class="">
-        <h4 class="alert alert-info" style="text-align: center"> Daftar Pembelian Sparepart</h4>
         <div class="">
+            <?php if ($row->biaya_part != 0) { ?>
+            <h4 class="alert alert-info" style="text-align: center"> Daftar Pembelian Sparepart</h4>
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -92,12 +92,19 @@
                 ?>
                 </tbody>
             </table>
+            <?php } ?>
 
             <div class="form-actions">
-                <a href="<?php echo site_url('penjualan')?>" class="btn btn-primary">Back
-                </a>
+                <a href="<?php echo site_url('penjualan')?>" class="btn btn-primary">Back</a>
+                <a href="<?php echo site_url('penjualan')?>" class="btn btn-success" onclick="myFunction()">Print</a>
+                <script>
+                function myFunction() {
+                window.print();
+                }
+                </script>
             </div>
         </div>
     </div>
+    
 <hr>
 </div>
