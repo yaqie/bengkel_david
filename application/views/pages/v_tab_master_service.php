@@ -20,9 +20,11 @@
         <td><?php echo $row->nm_layanan; ?></td>
         <td><?php echo currency_format($row->harga);?></td>
         <td align="center">
+        <?php if ($row->id_servis != 0){ ?>
             <a class="btn btn-primary" href="#EditServis<?php echo $row->id_servis?>" data-toggle="modal"> Edit</a>
             <a class="btn btn-danger" href="<?php echo site_url('master/hapus_service/'.$row->id_servis);?>"
             onclick="return confirm('Data akan dihapus ?')"> Hapus</a>
+        <?php } ?>
         </td>
         </tr>
       <?php }

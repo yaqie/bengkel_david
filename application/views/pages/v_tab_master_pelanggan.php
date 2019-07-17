@@ -24,6 +24,17 @@
               <td><?php echo $row->alamat; ?></td>
               <td><?php echo $row->email; ?></td>
               <td align="center">
+                <?php
+                if($row->ngantri == 0){
+                ?>
+                  <a class="btn btn-info" href="<?php echo site_url('master/tidak_mengantri/'.$row->kd_pelanggan);?>" > Tidak mengantri</a>
+                <?php
+                } else {
+                  ?>
+                  <a class="btn btn-success" href="<?php echo site_url('master/ngantri/'.$row->kd_pelanggan);?>"> Sedang mengantri</a>
+                <?php
+                }
+                ?>
                   <a class="btn btn-primary" href="#EditPelanggan<?php echo $row->kd_pelanggan?>" data-toggle="modal"> Edit</a>
                   <a class="btn btn-danger" href="<?php echo site_url('master/hapus_pelanggan/'.$row->kd_pelanggan);?>"
                      onclick="return confirm('Data akan dihapus ?')"> Hapus</a>

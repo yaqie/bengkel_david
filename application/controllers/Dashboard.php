@@ -9,13 +9,20 @@ class Dashboard extends CI_Controller {
             redirect('');
         };
         $this->load->model('MyModel');
+        $this->load->helper('currency_format_helper');
     }
 
     function index(){
         $data=array(
             'title'=>'Dashboard',
             'active_dashboard'=>'active',
-            'dt_contact'=>$this->MyModel->getAllData('contact'),
+            'data_barang'=>$this->MyModel->getAllData('sparepart'),
+            'kd_part'=>$this->MyModel->getKodeBarang(),
+            'kd_pelanggan'=>$this->MyModel->getKodePelanggan(),
+            'kd_user'=>$this->MyModel->getKodePengguna(),
+			'data_service'=>$this->MyModel->getAllData('servis'),
+            'data_pelanggan'=>$this->MyModel->getAllData('pelanggan'),
+            'data_pegawai'=>$this->MyModel->getAllData('user'),
         );
         $this->load->view('element/header',$data);
         $this->load->view('pages/v_dashboard');

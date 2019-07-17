@@ -19,9 +19,30 @@
 
   </head>
   <body>
+    <?php
+    if($this->session->userdata('login_status') != TRUE ){
+    ?>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="https://valconware.com" target="_blank">ValconWare.com</a>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<?php echo site_url()?>">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+          <a href="<?php echo site_url('login')?>"><font color="white">Login Admin</font></a>
+        </form>
+      </div>
+    </nav>
+    <?php
+    } else {
+    ?>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,13 +53,12 @@
             <a class="nav-link" href="<?php echo site_url('dashboard')?>">Home <span class="sr-only">(current)</span></a>
           </li>
 
-      <?php if ($this->session->userdata('LEVEL') == 'admin'){ ?>
-      <li class="<?php if(isset($active_master)){echo $active_master ;}?>">
-      <a class="nav-link" href="<?php echo site_url('master')?>">
-      <font color="white">Master Data</font></a>
-      </li>
-      <?php } ?>
-      
+          <?php if ($this->session->userdata('LEVEL') == 'admin'){ ?>
+          <li class="<?php if(isset($active_master)){echo $active_master ;}?>">
+          <a class="nav-link" href="<?php echo site_url('master')?>">
+          <font color="white">Master Data</font></a>
+          </li>
+
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaksi</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -50,12 +70,15 @@
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Persediaan Suku Cadang</a>
-              <a class="dropdown-item" href="#">Penjualan Sparepart</a>
-              <a class="dropdown-item" href="#">Jasa Service</a>
-			  <a class="dropdown-item" href="#">Pendapatan Laba Rugi</a>
+              <a class="dropdown-item" href="<?php echo site_url('laporan/persediaan_suku_cadang')?>">Persediaan Suku Cadang</a>
+              <a class="dropdown-item" href="<?php echo site_url('laporan/penjualan_sparepart')?>">Penjualan Sparepart</a>
+              <a class="dropdown-item" href="<?php echo site_url('laporan/jasa_servis')?>">Jasa Service</a>
+			  <a class="dropdown-item" href="<?php echo site_url('laporan/pendapatan')?>">Pendapatan</a>
             </div>
           </li>
+          <?php } ?>
+      
+          
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
@@ -63,3 +86,6 @@
         </form>
       </div>
     </nav>
+    <?php
+    }
+    ?>

@@ -163,6 +163,21 @@ class MyModel extends CI_Model{
 			    from transaksi_header a
 			    ORDER BY a.kd_transaksi DESC")->result();
     }
+    
+    function getAllDataPersediaanSC(){
+        return $this->db->query("SELECT * FROM sparepart")->result();
+    }
+    
+    function getAllDataPPenjualanSp(){
+        $tgl1 = date('Y-m-d');
+        $tgl2 = date('Y-m-d', strtotime('-7 days', strtotime($tgl1)));
+        return $this->db->query("SELECT * FROM `transaksi_header` WHERE biaya_part != 0 AND tanggal_penjualan <= '$tgl1' AND tanggal_penjualan > '$tgl2'")->result();
+    }
+    function getAllDatajasa_servis(){
+        $tgl1 = date('Y-m-d');
+        $tgl2 = date('Y-m-d', strtotime('-7 days', strtotime($tgl1)));
+        return $this->db->query("SELECT * FROM `transaksi_header` WHERE tanggal_penjualan <= '$tgl1' AND tanggal_penjualan > '$tgl2'")->result();
+    }
 
     function getDataPenjualan($id){		
 		$this->db->from('transaksi_header');

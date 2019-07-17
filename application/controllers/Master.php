@@ -46,10 +46,15 @@ class Master extends CI_Controller{
             'kd_part'=>$this->input->post('kd_part'),
             'nm_part'=>$this->input->post('nm_part'),
             'stok'=>$this->input->post('stok'),
+            'letak_barang'=>$this->input->post('letak'),
             'harga'=>$this->input->post('harga'),
         );
         $this->MyModel->insertData('sparepart',$data);
-        redirect("master");
+        if ($this->session->userdata('LEVEL') != 'admin'){
+            redirect("dashboard");
+        } else {
+            redirect("master");
+        }
     }
     function tambah_pelanggan(){
         $data=array(
@@ -89,10 +94,15 @@ class Master extends CI_Controller{
         $data=array(
             'nm_part'=>$this->input->post('nm_part'),
             'stok'=>$this->input->post('stok'),
+            'letak_barang'=>$this->input->post('letak'),
             'harga'=>$this->input->post('harga'),
         );
         $this->MyModel->updateData('sparepart',$data,$id);
-        redirect("master");
+        if ($this->session->userdata('LEVEL') != 'admin'){
+            redirect("dashboard");
+        } else {
+            redirect("master");
+        }
     }
     function edit_pelanggan(){
         $id['kd_pelanggan'] = $this->input->post('kd_pelanggan');
@@ -149,11 +159,31 @@ class Master extends CI_Controller{
     function hapus_barang(){
         $id['kd_part'] = $this->uri->segment(3);
         $this->MyModel->deleteData('sparepart',$id);
-        redirect("master");
+        if ($this->session->userdata('LEVEL') != 'admin'){
+            redirect("dashboard");
+        } else {
+            redirect("master");
+        }
     }
     function hapus_pelanggan(){
         $id['kd_pelanggan'] = $this->uri->segment(3);
         $this->MyModel->deleteData('pelanggan',$id);
+        redirect("master");
+    }
+    function tidak_mengantri(){
+        $id['kd_pelanggan'] = $this->uri->segment(3);
+        $data=array(
+            'ngantri'=>'1',
+        );
+        $this->MyModel->updateData('pelanggan',$data,$id);
+        redirect("master");
+    }
+    function ngantri(){
+        $id['kd_pelanggan'] = $this->uri->segment(3);
+        $data=array(
+            'ngantri'=>'0',
+        );
+        $this->MyModel->updateData('pelanggan',$data,$id);
         redirect("master");
     }
     function hapus_user(){

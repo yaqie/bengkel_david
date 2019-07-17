@@ -96,7 +96,7 @@
 
             <div class="form-actions">
                 <a href="<?php echo site_url('penjualan')?>" class="btn btn-primary">Back</a>
-                <a href="<?php echo site_url('penjualan')?>" class="btn btn-success" onclick="myFunction()">Print</a>
+                <a href="" class="btn btn-success" onclick="myFunction()">Print</a>
                 <script>
                 function myFunction() {
                 window.print();

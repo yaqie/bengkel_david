@@ -6,16 +6,10 @@
         <div class="col-md-12">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item active">
-            <a class="nav-link active" href="#home" data-toggle="tab">Home</a>
+            <a class="nav-link active" href="#home" data-toggle="tab">Jam Operasional</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#tabPelanggan" data-toggle="tab">Pelanggan</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#tabKendaraan" data-toggle="tab">Kendaraan</a>
-          </li>
-		      <li class="nav-item">
-            <a class="nav-link" href="#tabPemasok"  data-toggle="tab">Pemasok</a>
           </li>
 		      <li class="nav-item">
             <a class="nav-link" href="#tabPart"  data-toggle="tab">Sparepart</a>

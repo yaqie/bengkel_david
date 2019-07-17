@@ -5,6 +5,7 @@
         <th>Kode Sparepart</th>
         <th>Nama Sparepart</th>
         <th>Stok</th>
+        <th>Letak Barang</th>
         <th>Harga</th>
       <th>
        <a href="#AddPart" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">Tambah Data</a>
@@ -22,6 +23,7 @@
         <td><?php echo $row->kd_part; ?></td>
         <td><?php echo $row->nm_part; ?></td>
         <td><?php echo $row->stok; ?></td>
+        <td><?php echo $row->letak_barang; ?></td>
         <td><?php echo currency_format($row->harga);?></td>
         <td align="center">
             <a class="btn btn-primary" href="#EditPart<?php echo $row->kd_part?>" data-toggle="modal"> Edit</a>
@@ -69,6 +71,12 @@
                 <label class="form-label">Harga</label>
                     <input name="harga" placeholder="Harga" class="form-control" type="number">
                 </fieldset>  
+          </div>
+          <div class="col-md-12">
+                <fieldset class="form-group">
+                    <label class="form-label">Letak Barang</label>
+                    <input name="letak" placeholder="Letak Barang" class="form-control" type="text">
+                </fieldset>
           </div>
         
         </div>
@@ -120,6 +128,12 @@ if (isset($data_barang)){
                 <label class="form-label">Harga</label>
                     <input name="harga" class="form-control" type="number" value="<?php echo $row->harga; ?>">
                 </fieldset>  
+          </div>
+          <div class="col-md-12">
+                <fieldset class="form-group">
+                    <label class="form-label">Letak Barang</label>
+                    <input name="letak" placeholder="Letak Barang" class="form-control" type="text" value="<?php echo $row->letak_barang; ?>">
+                </fieldset>
           </div>
         
         </div>

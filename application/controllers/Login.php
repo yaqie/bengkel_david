@@ -4,6 +4,23 @@ class Login extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('MyModel');
+        $this->load->helper('currency_format_helper');
+    }
+
+    function landing(){
+        $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();
+        $antrian = $this->db->get_where('pelanggan', array('ngantri' => '1'))->num_rows();
+        $data=array(
+            'jamoperasional'=>$jamoperasional,
+            'antrian'=>$antrian,
+            'title'=>'Landing',
+            'active_dashboard'=>'active',
+            'dt_contact'=>$this->MyModel->getAllData('contact'),
+            'persediaan_suku_cadang'=>$this->MyModel->getAllDataPersediaanSC()
+        );
+        $this->load->view('element/header',$data);
+        $this->load->view('pages/v_landing',$data);
+        $this->load->view('element/footer',$data);
     }
 
     function index(){
