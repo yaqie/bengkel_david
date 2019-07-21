@@ -1,4 +1,4 @@
-<table class="table table-striped table-sm">
+<table id="example" class="table table-striped table-bordered" style="width:100%">
 <thead>
   <tr>
         <th>No</th>
@@ -146,6 +146,11 @@ if (isset($data_barang)){
       </div>
     </div>
   </div>
+  <script>
+  $(document).ready(function() {
+      $('#example').DataTable();
+  } );
+</script>
   <?php }
 }
 ?>

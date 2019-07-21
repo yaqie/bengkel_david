@@ -9,6 +9,8 @@
     <title><?php echo $title?></title>
 
     <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" >
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" >
     <style type="text/css">
     body {
     padding-top: 3.5rem;
@@ -49,9 +51,11 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+          <?php if ($this->session->userdata('LEVEL') != 'admin'){ ?>
           <li class="nav-item active">
             <a class="nav-link" href="<?php echo site_url('dashboard')?>">Home <span class="sr-only">(current)</span></a>
           </li>
+          <?php } ?>
 
           <?php if ($this->session->userdata('LEVEL') == 'admin'){ ?>
           <li class="<?php if(isset($active_master)){echo $active_master ;}?>">

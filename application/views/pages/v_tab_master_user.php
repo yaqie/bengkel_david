@@ -67,7 +67,7 @@
           <div class="col-md-6">
                 <fieldset class="form-group">
                     <label class="form-label">Nama Lengkap</label>
-                    <input name="nama" placeholder="Nama Lengkap" class="form-control" type="number" required>
+                    <input name="nama" placeholder="Nama Lengkap" class="form-control" type="text" required>
                 </fieldset>
 
                 <fieldset class="form-group">

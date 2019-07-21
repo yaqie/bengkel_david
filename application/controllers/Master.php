@@ -39,6 +39,11 @@ class Master extends CI_Controller{
             'harga'=>$this->input->post('harga'),
         );
         $this->MyModel->insertData('servis',$data);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function tambah_barang(){
@@ -51,8 +56,18 @@ class Master extends CI_Controller{
         );
         $this->MyModel->insertData('sparepart',$data);
         if ($this->session->userdata('LEVEL') != 'admin'){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success"> Perubahan Berhasil.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            ');
             redirect("dashboard");
         } else {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success"> Perubahan Berhasil.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            ');
             redirect("master");
         }
     }
@@ -65,6 +80,11 @@ class Master extends CI_Controller{
             'telp'=>$this->input->post('telp'),
         );
         $this->MyModel->insertData('pelanggan',$data);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function tambah_user(){
@@ -76,6 +96,11 @@ class Master extends CI_Controller{
             'level'=>$this->input->post('level'),
         );
         $this->MyModel->insertData('user',$data);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
 
@@ -87,6 +112,11 @@ class Master extends CI_Controller{
             'harga'=>$this->input->post('harga'),
         );
         $this->MyModel->updateData('servis',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function edit_barang(){
@@ -99,8 +129,18 @@ class Master extends CI_Controller{
         );
         $this->MyModel->updateData('sparepart',$data,$id);
         if ($this->session->userdata('LEVEL') != 'admin'){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success"> Perubahan Berhasil.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            ');
             redirect("dashboard");
         } else {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success"> Perubahan Berhasil.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            ');
             redirect("master");
         }
     }
@@ -113,6 +153,11 @@ class Master extends CI_Controller{
             'telp'=>$this->input->post('telp'),
         );
         $this->MyModel->updateData('pelanggan',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function edit_contact(){
@@ -127,6 +172,11 @@ class Master extends CI_Controller{
             'desc'=>$this->input->post('desc'),
         );
         $this->MyModel->updateData('contact',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function edit_jam(){
@@ -136,6 +186,11 @@ class Master extends CI_Controller{
             'text2'=> $this->input->post('jadwal2'),
         );
         $this->MyModel->updateData('setting',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function edit_user(){
@@ -147,6 +202,11 @@ class Master extends CI_Controller{
             'level'=>$this->input->post('level'),
         );
         $this->MyModel->updateData('user',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
 
@@ -154,20 +214,40 @@ class Master extends CI_Controller{
 	function hapus_service(){
         $id['id_servis'] = $this->uri->segment(3);
         $this->MyModel->deleteData('servis',$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function hapus_barang(){
         $id['kd_part'] = $this->uri->segment(3);
         $this->MyModel->deleteData('sparepart',$id);
         if ($this->session->userdata('LEVEL') != 'admin'){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success"> Perubahan Berhasil.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            ');
             redirect("dashboard");
         } else {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success"> Perubahan Berhasil.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+            ');
             redirect("master");
         }
     }
     function hapus_pelanggan(){
         $id['kd_pelanggan'] = $this->uri->segment(3);
         $this->MyModel->deleteData('pelanggan',$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function tidak_mengantri(){
@@ -176,6 +256,11 @@ class Master extends CI_Controller{
             'ngantri'=>'1',
         );
         $this->MyModel->updateData('pelanggan',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function ngantri(){
@@ -184,11 +269,21 @@ class Master extends CI_Controller{
             'ngantri'=>'0',
         );
         $this->MyModel->updateData('pelanggan',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
     function hapus_user(){
         $id['kd_user'] = $this->uri->segment(3);
         $this->MyModel->deleteData('user',$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
         redirect("master");
     }
 }

@@ -95,9 +95,9 @@
   </div>
   <div class="col-md-4" align="center">
     <label class="form-label">Total Harga Sparepart</label><font color="red" size=5px;><b><br>
-	<label class="form-label">Rp. <?php echo $this->cart->format_number($this->cart->total()); ?></b></label>
+	<label class="form-label empty_value">Rp. <?php echo $this->cart->format_number($this->cart->total()); ?></b></label>
     </font><input type="hidden" name="kd_transaksi" value="<?= $kd_transaksi; ?>" readonly>
-    <input type="hidden" name="biaya_part" value="<?= $this->cart->total()?>">
+    <input type="hidden" name="biaya_part" class="biaya_part" value="<?= $this->cart->total()?>">
     <input id="tanggal_penjualan" type="hidden" name="tanggal_penjualan" data-date-format="dd-mm-yyyy" value="<?php echo isset($date) ? $date : date('d-m-Y')?>" data-date="12-02-2012">
     </div>
 </div>
@@ -216,6 +216,9 @@
                     success: function(){
                     }
                 });
+                // $(".empty_value").html('Rp <?= $this->cart->total() ?>');
+                // $(".biaya_part").val('<?= $this->cart->total() ?>');
+                window.location.reload();
                 $(this).parents(".gradeX").animate({ opacity: "hide" }, "slow");
             }
             return false;

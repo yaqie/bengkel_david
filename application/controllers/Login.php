@@ -50,12 +50,25 @@ class Login extends CI_Controller{
                 );
                 //set session dengan value dari database
                 $this->session->set_userdata($sess_array);
-                redirect('dashboard','refresh');
+                $this->session->set_flashdata('message', '
+                <div class="alert alert-success"> Login Berhasil.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                </div>
+                ');
+                if ($this->session->userdata('LEVEL') != 'admin'){
+                    redirect('dashboard','refresh');
+                } else {
+                    redirect('master','refresh');
+                }
             }
             return TRUE;
         } else {
             //jika validasi salah
-            redirect('dashboard','refresh');
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-danger"> Login gagal, periksa lagi username dan password anda.
+            </div>
+            ');
+            redirect('login','refresh');
             return FALSE;
         }
     }

@@ -4,6 +4,7 @@
   <div class="container">
       <div class="row">
         <div class="col-md-12">
+        <?php echo $this->session->flashdata('message');?>
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item active">
             <a class="nav-link active" href="#home" data-toggle="tab">Jam Operasional</a>
