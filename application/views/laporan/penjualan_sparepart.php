@@ -21,7 +21,9 @@
     <th>Nama Suku Cadang</th>
     <th>Kuantiti Penjualan</th>
     <th>Tanggal Transaksi</th>
-    <th>Harga</th>
+    <th>Harga Modal</th>
+    <th>Harga Jual</th>
+    <th>Pendapatan Bersih</th>
   </tr>
 </thead>
 <tbody>
@@ -33,7 +35,7 @@
     $pelanggan = $this->db->query("SELECT * FROM pelanggan WHERE kd_pelanggan = '$row->kd_pelanggan'")->row();
     $transaksi_detail = $this->db->query("SELECT * FROM transaksi_detail WHERE kd_transaksi = '$row->kd_transaksi'")->row();
     $sparepart = $this->db->query("SELECT * FROM sparepart WHERE kd_part = '$transaksi_detail->kd_part'")->row();
-    $total += $sparepart->harga * $transaksi_detail->qty;
+    $total += ($sparepart->harga - $sparepart->harga_modal) * $transaksi_detail->qty;
     ?>
         <tr>
             <td><?php echo $no++; ?></td>
@@ -42,14 +44,16 @@
             <td><?php echo $sparepart->nm_part; ?></td>
             <td><?php echo $transaksi_detail->qty; ?></td>
             <td><?php echo $row->tanggal_penjualan; ?></td>
-            <td><?php echo currency_format($sparepart->harga * $transaksi_detail->qty); ?></td>
+            <td><?php echo currency_format($sparepart->harga_modal); ?></td>
+            <td><?php echo currency_format($sparepart->harga); ?></td>
+            <td><b><?php echo currency_format(($sparepart->harga - $sparepart->harga_modal) * $transaksi_detail->qty); ?></b></td>
         </tr>
       <?php }
   }
   ?>
   <tr>
-  <td colspan="6"><b>Total Harga</b></td>
-  <td><?= currency_format($total) ?></td>
+  <td colspan="8"><b>Total Harga</b></td>
+  <td><b><?= currency_format($total) ?></b></td>
   </tr>
 </tbody>
 </table>

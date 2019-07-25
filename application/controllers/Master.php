@@ -13,19 +13,24 @@ class Master extends CI_Controller{
     }
 
     function index(){
+        $date = date("Y-m-d");
         $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();
+        $booking = $this->db->query("SELECT * FROM booking WHERE tanggaljambooking >= '$date'")->result();
         $data=array(
             'title'=>'Master Data',
             'jamoperasional'=>$jamoperasional,
             'active_master'=>'active',
             'kd_part'=>$this->MyModel->getKodeBarang(),
             'kd_pelanggan'=>$this->MyModel->getKodePelanggan(),
+            'kd_pemasok'=>$this->MyModel->getKodePemasok(),
             'kd_user'=>$this->MyModel->getKodePengguna(),
 			'data_service'=>$this->MyModel->getAllData('servis'),
             'data_barang'=>$this->MyModel->getAllData('sparepart'),
             'data_pelanggan'=>$this->MyModel->getAllData('pelanggan'),
+            'data_pemasok'=>$this->MyModel->getAllData('pemasok'),
             'data_contact'=>$this->MyModel->getAllData('contact'),
             'data_pegawai'=>$this->MyModel->getAllData('user'),
+            'data_booking'=>$booking,
         );
         $this->load->view('element/header',$data);
         $this->load->view('pages/v_master');
@@ -50,9 +55,11 @@ class Master extends CI_Controller{
         $data=array(
             'kd_part'=>$this->input->post('kd_part'),
             'nm_part'=>$this->input->post('nm_part'),
+            'kd_pemasok'=>$this->input->post('pemasok'),
             'stok'=>$this->input->post('stok'),
             'letak_barang'=>$this->input->post('letak'),
-            'harga'=>$this->input->post('harga'),
+            'harga_modal'=>$this->input->post('harga1'),
+            'harga'=>$this->input->post('harga2'),
         );
         $this->MyModel->insertData('sparepart',$data);
         if ($this->session->userdata('LEVEL') != 'admin'){
@@ -80,6 +87,22 @@ class Master extends CI_Controller{
             'telp'=>$this->input->post('telp'),
         );
         $this->MyModel->insertData('pelanggan',$data);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
+        redirect("master");
+    }
+    function tambah_pemasok(){
+        $data=array(
+            'kd_pemasok'=> $this->input->post('kd_pemasok'),
+            'nm_pemasok'=>$this->input->post('nm_pemasok'),
+            'alamat'=>$this->input->post('alamat'),
+            'email'=>$this->input->post('email'),
+            'telp'=>$this->input->post('telp'),
+        );
+        $this->MyModel->insertData('pemasok',$data);
         $this->session->set_flashdata('message', '
         <div class="alert alert-success"> Perubahan Berhasil.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
@@ -123,9 +146,11 @@ class Master extends CI_Controller{
         $id['kd_part'] = $this->input->post('kd_part');
         $data=array(
             'nm_part'=>$this->input->post('nm_part'),
+            'kd_pemasok'=>$this->input->post('pemasok'),
             'stok'=>$this->input->post('stok'),
             'letak_barang'=>$this->input->post('letak'),
-            'harga'=>$this->input->post('harga'),
+            'harga_modal'=>$this->input->post('harga1'),
+            'harga'=>$this->input->post('harga2'),
         );
         $this->MyModel->updateData('sparepart',$data,$id);
         if ($this->session->userdata('LEVEL') != 'admin'){
@@ -153,6 +178,22 @@ class Master extends CI_Controller{
             'telp'=>$this->input->post('telp'),
         );
         $this->MyModel->updateData('pelanggan',$data,$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
+        redirect("master");
+    }
+    function edit_pemasok(){
+        $id['kd_pemasok'] = $this->input->post('kd_pemasok');
+        $data=array(
+            'nm_pemasok'=>$this->input->post('nm_pemasok'),
+            'alamat'=>$this->input->post('alamat'),
+            'email'=>$this->input->post('email'),
+            'telp'=>$this->input->post('telp'),
+        );
+        $this->MyModel->updateData('pemasok',$data,$id);
         $this->session->set_flashdata('message', '
         <div class="alert alert-success"> Perubahan Berhasil.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
@@ -243,6 +284,16 @@ class Master extends CI_Controller{
     function hapus_pelanggan(){
         $id['kd_pelanggan'] = $this->uri->segment(3);
         $this->MyModel->deleteData('pelanggan',$id);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
+        redirect("master");
+    }
+    function hapus_pemasok(){
+        $id['kd_pemasok'] = $this->uri->segment(3);
+        $this->MyModel->deleteData('pemasok',$id);
         $this->session->set_flashdata('message', '
         <div class="alert alert-success"> Perubahan Berhasil.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>

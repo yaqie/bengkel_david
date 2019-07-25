@@ -4,9 +4,11 @@
         <th>No</th>
         <th>Kode Sparepart</th>
         <th>Nama Sparepart</th>
+        <th>Nama Pemasok</th>
         <th>Stok</th>
         <th>Letak Barang</th>
-        <th>Harga</th>
+        <th>Harga Modal</th>
+        <th>Harga Jual</th>
       <th>
        <a href="#AddPart" class="btn btn-mini btn-block btn-inverse" data-toggle="modal">Tambah Data</a>
       </th>
@@ -17,13 +19,16 @@
     $no=1;
     if(isset($data_barang)){
     foreach($data_barang as $row){
+      $pemasok = $this->db->query("SELECT * FROM pemasok WHERE kd_pemasok = '$row->kd_pemasok' ")->row();
     ?>
         <tr>
         <td><?php echo $no++; ?></td>
         <td><?php echo $row->kd_part; ?></td>
         <td><?php echo $row->nm_part; ?></td>
+        <td><?php echo $pemasok->nm_pemasok; ?></td>
         <td><?php echo $row->stok; ?></td>
         <td><?php echo $row->letak_barang; ?></td>
+        <td><?php echo currency_format($row->harga_modal);?></td>
         <td><?php echo currency_format($row->harga);?></td>
         <td align="center">
             <a class="btn btn-primary" href="#EditPart<?php echo $row->kd_part?>" data-toggle="modal"> Edit</a>
@@ -54,23 +59,48 @@
                     <label class="form-label">Kode Sparepart</label>
                     <input name="kd_part" type="text" value="<?php echo $kd_part; ?>" class="form-control" readonly>
                 </fieldset>
-
+          </div>
+          
+          <div class="col-md-6">
                 <fieldset class="form-group">
                     <label class="form-label">Nama Sparepart</label>
                     <input name="nm_part" placeholder="Nama Sparepart" class="form-control" type="text">
                 </fieldset>
           </div>
-         
+          <div class="col-md-6">
+                <fieldset class="form-group">
+                    <label class="form-label">Pemasok</label>
+                    <select name="pemasok" id="" class="form-control" required>
+                      <option value="">Pilih Pemasok</option>
+                      <?php
+                      $no=1;
+                      if(isset($data_pemasok)){
+                      foreach($data_pemasok as $row){
+                      ?>
+                        <option value="<?php echo $row->kd_pemasok; ?>"><?php echo $row->nm_pemasok; ?></option>
+                      <?php
+                      }}
+                      ?>
+                    </select>
+                </fieldset>
+          </div>
           <div class="col-md-6">
                 <fieldset class="form-group">
                     <label class="form-label">Stok</label>
                     <input name="stok" placeholder="Jumlah Stok" class="form-control" type="number">
                 </fieldset>
-
+          </div>
+          <div class="col-md-6">
                 <fieldset class="form-group">
-                <label class="form-label">Harga</label>
-                    <input name="harga" placeholder="Harga" class="form-control" type="number">
-                </fieldset>  
+                <label class="form-label">Harga Modal</label>
+                    <input name="harga1" placeholder="Harga / Unit" class="form-control" type="number">
+                </fieldset>
+          </div>
+          <div class="col-md-6">
+                <fieldset class="form-group">
+                <label class="form-label">Harga Jual</label>
+                    <input name="harga2" placeholder="Harga / Unit" class="form-control" type="number">
+                </fieldset>
           </div>
           <div class="col-md-12">
                 <fieldset class="form-group">
@@ -107,26 +137,53 @@ if (isset($data_barang)){
           <div class="row">
 
           <div class="col-md-6">
-                <fieldset class="form-group">
-                    <label class="form-label">Kode Sparepart</label>
-                    <input name="kd_part" type="text" value="<?php echo $row->kd_part; ?>" class="form-control" readonly>
-                </fieldset>
+            <fieldset class="form-group">
+              <label class="form-label">Kode Sparepart</label>
+              <input name="kd_part" type="text" value="<?php echo $row->kd_part; ?>" class="form-control" readonly>
+            </fieldset>
+          </div>
+          <div class="col-md-6">
 
                 <fieldset class="form-group">
                     <label class="form-label">Nama Sparepart</label>
                     <input name="nm_part" class="form-control" type="text" value="<?php echo $row->nm_part; ?>">
                 </fieldset>
           </div>
-         
           <div class="col-md-6">
                 <fieldset class="form-group">
-                    <label class="form-label">Stok</label>
-                    <input name="stok" class="form-control" type="number" value="<?php echo $row->stok; ?>">
+                    <label class="form-label">Pemasok</label>
+                    <select name="pemasok" id="" class="form-control" required>
+                      <option value="">Pilih Pemasok</option>
+                      <?php
+                      $no=1;
+                      if(isset($data_pemasok)){
+                      foreach($data_pemasok as $row_pemasok){
+                      ?>
+                        <option value="<?php echo $row_pemasok->kd_pemasok; ?>"><?php echo $row_pemasok->nm_pemasok; ?></option>
+                      <?php
+                      }}
+                      ?>
+                    </select>
                 </fieldset>
-
+          </div>
+         
+          <div class="col-md-6">
+            <fieldset class="form-group">
+              <label class="form-label">Stok</label>
+              <input name="stok" class="form-control" type="number" value="<?php echo $row->stok; ?>">
+            </fieldset>
+          </div>
+            
+          <div class="col-md-6">
                 <fieldset class="form-group">
-                <label class="form-label">Harga</label>
-                    <input name="harga" class="form-control" type="number" value="<?php echo $row->harga; ?>">
+                <label class="form-label">Harga Modal</label>
+                    <input name="harga1" class="form-control" type="number" value="<?php echo $row->harga_modal; ?>">
+                </fieldset>  
+          </div>
+          <div class="col-md-6">
+                <fieldset class="form-group">
+                <label class="form-label">Harga Jual</label>
+                    <input name="harga2" class="form-control" type="number" value="<?php echo $row->harga; ?>">
                 </fieldset>  
           </div>
           <div class="col-md-12">

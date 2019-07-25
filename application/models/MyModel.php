@@ -69,17 +69,24 @@ class MyModel extends CI_Model{
         $kodejadi = "P-".$kodemax; 
         return $kodejadi; 
 		
-    //    $q = $this->db->query("select MAX(RIGHT(kd_pelanggan,3)) as kd_max from pelanggan");
-    //    $kd = "";
-    //    if($q->num_rows()>0){
-    //        foreach($q->result() as $k){
-    //            $tmp = ((int)$k->kd_max)+1;
-    //            $kd = sprintf("%03s", $tmp);
-    //        }
-    //    }else{
-    //        $kd = "001";
-    //    }
-    //    return "P-".$kd;
+    }
+    
+    //Kode Pemasok
+    public function getKodePemasok(){
+		$this->db->select('RIGHT(pemasok.id_pemasok,3) as kode', FALSE);
+        $this->db->order_by('id_pemasok','DESC');    
+        $this->db->limit(1);    
+        $query = $this->db->get('pemasok');    
+        if($query->num_rows() <> 0){            
+         $data = $query->row();      
+         $kode = intval($data->kode) + 1;    
+        } else {          
+         $kode = 1;    
+        }
+        $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT);
+        $kodejadi = "PS-".$kodemax; 
+        return $kodejadi; 
+		
     }
 
     //Kode User

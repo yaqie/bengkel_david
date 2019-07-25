@@ -47,6 +47,7 @@ class Penjualan extends CI_Controller{
             'active_penjualan'=>'active',
             'dt_penjualan'=>$this->MyModel->getDataPenjualan($id),
             'barang_jual'=>$this->MyModel->getBarangPenjualan($id),
+            'data_contact'=>$this->MyModel->getAllData('contact'),
         );
         $this->load->view('element/header',$data);
         $this->load->view('pages/v_detail_penjualan');

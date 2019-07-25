@@ -32,7 +32,10 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="<?php echo site_url()?>">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="<?php echo site_url()?>">Informasi Bengkel <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="<?php echo site_url('booking')?>">Booking Antrian<span class="sr-only">(current)</span></a>
           </li>
         </ul>
 
@@ -55,6 +58,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="<?php echo site_url('dashboard')?>">Home <span class="sr-only">(current)</span></a>
           </li>
+          
           <?php } ?>
 
           <?php if ($this->session->userdata('LEVEL') == 'admin'){ ?>

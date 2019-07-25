@@ -50,6 +50,17 @@
          <div><h6 class="my-0">Pramuniaga</h6></div>
          <span class="text-muted"><?php echo $row->nama?></span>
         </li>
+        <?php
+        foreach($data_contact as $rows){}
+        ?>
+		<li class="d-flex justify-content-between ">
+         <div><h6 class="my-0">Nama Bengkel</h6></div>
+         <span class="text-muted"><?php echo $rows->nama?></span>
+        </li>
+		<li class="d-flex justify-content-between " style="margin-bottom:30px;">
+         <div><h6 class="my-0">Alamat Bengkel</h6></div>
+         <span class="text-muted"><?php echo $rows->alamat?></span>
+        </li>
 	   </div>
      </div>
      <?php }
