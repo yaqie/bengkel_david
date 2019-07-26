@@ -30,12 +30,13 @@
                 if($row->status == 0){
                 ?>
                   <a class="btn btn-success" href="<?php echo site_url('booking/terima/'.$row->id_booking);?>" >Terima</a>
+                  <a class="btn btn-warning" href="<?php echo site_url('booking/tolak/'.$row->id_booking);?>" >Tolak</a>
                 <?php
                 } else if($row->status == 1) {
                   ?>
                   <a class="btn btn-info" href="<?php echo site_url('booking/selesai/'.$row->id_booking);?>"> Selesai</a>
                 <?php
-                } else if($row->status == 2) {
+                } else if($row->status == 2 || $row->status == -1) {
                   ?>
                   <a class="btn btn-danger" href="<?php echo site_url('booking/hapus/'.$row->id_booking);?>"> Hapus</a>
                 <?php

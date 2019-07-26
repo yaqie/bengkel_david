@@ -78,6 +78,22 @@ class Booking extends CI_Controller {
         redirect("master");
     }
     
+    function tolak($id){
+        $where=array(
+            'id_booking'=>$id,
+        );
+        $data=array(
+            'status'=>-1,
+        );
+        $this->MyModel->updateData('booking',$data,$where);
+        $this->session->set_flashdata('message', '
+        <div class="alert alert-success"> Perubahan Berhasil.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+        </div>
+        ');
+        redirect("master");
+    }
+    
     function hapus($id){
         $where=array(
             'id_booking'=>$id,
