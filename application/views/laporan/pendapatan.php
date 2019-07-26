@@ -37,17 +37,21 @@
     $pelanggan = $this->db->query("SELECT * FROM pelanggan WHERE kd_pelanggan = '$row->kd_pelanggan'")->row();
     // echo "<b>$row->kd_transaksi</b>";
     $h_transaksi_detail = $this->db->query("SELECT * FROM transaksi_detail WHERE kd_transaksi = '$row->kd_transaksi'")->num_rows();
-    if($h_transaksi_detail != 0){
+    if($h_transaksi_detail == 0){
+      $nama_sparepart = "-";
+      $transaksi_qty = 0;
+      $sparepart_modal = 0;
+      $sparepart_jual = 0;
+    } else if ($h_transaksi_detail != 0){
       $transaksi_detail = $this->db->query("SELECT * FROM transaksi_detail WHERE kd_transaksi = '$row->kd_transaksi'")->row();
       $sparepart = $this->db->query("SELECT * FROM sparepart WHERE kd_part = '$transaksi_detail->kd_part'")->row();
       $nama_sparepart = $sparepart->nm_part;
       $transaksi_qty = $transaksi_detail->qty;
-    } else {
-      $nama_sparepart = "-";
-      $transaksi_qty = 0;
+      $sparepart_modal = $sparepart->harga_modal;
+      $sparepart_jual = $sparepart->harga;
     }
     $jasa_servis = $this->db->query("SELECT * FROM servis WHERE id_servis = '$row->id_servis'")->row();
-    $total += (($sparepart->harga - $sparepart->harga_modal) * $transaksi_qty) + $jasa_servis->harga;
+    $total += (($sparepart_jual - $sparepart_modal) * $transaksi_qty) + $jasa_servis->harga;
     ?>
         <tr>
             <td><?php echo $no++; ?></td>
@@ -57,10 +61,10 @@
             <td><?php echo $jasa_servis->nm_layanan; ?></td>
             <td><?php echo $transaksi_qty; ?></td>
             <td><?php echo $row->tanggal_penjualan; ?></td>
-            <td><?php echo currency_format($sparepart->harga_modal); ?></td>
-            <td><?php echo currency_format($sparepart->harga); ?></td>
+            <td><?php echo currency_format($sparepart_modal); ?></td>
+            <td><?php echo currency_format($sparepart_jual); ?></td>
             <td><?php echo currency_format($jasa_servis->harga); ?></td>
-            <td><b><?php echo currency_format((($sparepart->harga - $sparepart->harga_modal) * $transaksi_qty) + $jasa_servis->harga); ?></b></td>
+            <td><b><?php echo currency_format((($sparepart_jual - $sparepart_modal) * $transaksi_qty) + $jasa_servis->harga); ?></b></td>
         </tr>
       <?php }
   }
