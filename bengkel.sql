@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2019 at 11:55 PM
+-- Generation Time: Aug 03, 2019 at 02:18 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -44,8 +44,10 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id_booking`, `nama`, `nohp`, `nokendaraan`, `jam`, `tanggal`, `tanggaljambooking`, `status`) VALUES
-(2, 'ahmad yahya asy-syidqie', '0895357948031', 'R 2367 GS', '12:00:00', '2019-07-27', '2019-07-26 04:47:38', 1),
-(3, 'dafid', '01928390182309', 'R 1893 US', '12:00:00', '2019-07-27', '2019-07-26 04:53:06', 1);
+(2, 'ahmad yahya asy-syidqie', '0895357948031', 'R 2367 GS', '12:00:00', '2019-07-27', '2019-07-26 04:47:38', 2),
+(3, 'dafid', '01928390182309', 'R 1893 US', '12:00:00', '2019-07-27', '2019-07-26 04:53:06', 1),
+(4, 'kungfret', '0895357948031', 'R 2367 GS', '20:00:00', '2019-07-26', '2019-07-26 15:20:04', -1),
+(5, 'yahya', '0895357948031', 'R 2367 GS', '12:00:00', '2019-08-03', '2019-08-03 07:15:43', 0);
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id_setting`, `bagian`, `text1`, `text2`, `text3`) VALUES
-(1, 'jam_operasional', 'Senin - Jumat : 08:00 - 16:00 uuu', 'Sabtu & Minggu : 08:00 - 14:00', '');
+(1, 'jam_operasional', 'Senin - Jumat : 08:00 - 16:00', 'Sabtu & Minggu : 08:00 - 14:00', '');
 
 -- --------------------------------------------------------
 
@@ -186,14 +188,15 @@ CREATE TABLE `sparepart` (
 --
 
 INSERT INTO `sparepart` (`id_part`, `kd_part`, `nm_part`, `kd_pemasok`, `stok`, `harga_modal`, `harga`, `letak_barang`) VALUES
-(7, 'P-001', 'Oli Mesin', 'PS-0002', 22, 60000, 70000, 'jas@KASknj'),
-(8, 'P-002', 'Lampu LED', 'PS-0002', 223, 20000, 25000, ''),
-(9, 'P-003', 'kampas rem', 'PS-0002', 76, 30000, 35000, 'vbb '),
+(7, 'P-001', 'Oli Mesin', 'PS-001', 34, 60000, 70000, 'jas@KASknj'),
+(8, 'P-002', 'Lampu LED', 'PS-0002', 213, 20000, 25000, ''),
+(9, 'P-003', 'kampas rem', 'PS-0002', 86, 30000, 35000, 'vbb '),
 (10, 'P-004', 'Ban Luar', 'PS-001', 10, 0, 20000, 'gnjhn'),
 (11, 'P-005', 'Pentil', 'PS-001', 1, 0, 10000, 'U20'),
 (14, 'P-006', 'jiiiii', 'PS-001', 888, 0, 8787, 'gnjhn'),
-(15, 'P-007', 'obeng', 'PS-001', 1000, 10000, 12000, 'Puz@3naT'),
-(16, 'P-008', 'oli enduro', 'PS-0002', 50, 35000, 40000, 'u23');
+(15, 'P-007', 'obeng', 'PS-001', 990, 10000, 12000, 'Puz@3naT'),
+(16, 'P-008', 'oli enduro', 'PS-0002', 50, 35000, 40000, 'u23'),
+(17, 'P-009', 'dafid', 'PS-0002', 25, 100000, 110000, 'uaksjdn');
 
 -- --------------------------------------------------------
 
@@ -213,9 +216,6 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`id_detail`, `kd_transaksi`, `kd_part`, `qty`) VALUES
-(12, 'T-001', 'P-001', 10),
-(13, 'T-002', 'P-003', 10),
-(14, 'T-004', 'P-001', 2),
 (15, 'T-005', 'P-002', 2),
 (16, 'T-006', 'P-002', 2),
 (17, 'T-007', 'P-003', 2),
@@ -223,7 +223,9 @@ INSERT INTO `transaksi_detail` (`id_detail`, `kd_transaksi`, `kd_part`, `qty`) V
 (19, 'T-010', 'P-001', 2),
 (20, 'T-011', 'P-001', 5),
 (22, 'T-012', 'P-002', 2),
-(23, 'T-013', 'P-003', 10);
+(23, 'T-013', 'P-003', 10),
+(24, 'T-016', 'P-002', 10),
+(25, 'T-017', 'P-007', 10);
 
 -- --------------------------------------------------------
 
@@ -245,10 +247,7 @@ CREATE TABLE `transaksi_header` (
 --
 
 INSERT INTO `transaksi_header` (`kd_transaksi`, `kd_pelanggan`, `biaya_part`, `id_servis`, `tanggal_penjualan`, `kd_user`) VALUES
-('T-001', 'P-001', 780000, 1, '2018-07-14', 'K-001'),
-('T-002', 'P-001', 350000, 0, '2019-06-14', 'K-001'),
 ('T-003', 'P-002', 0, 3, '2019-07-14', 'K-001'),
-('T-004', 'P-001', 156000, 0, '2019-07-12', 'K-001'),
 ('T-005', 'P-002', 50000, 0, '2019-07-17', 'K-001'),
 ('T-006', 'P-002', 50000, 0, '2019-07-18', 'K-001'),
 ('T-007', 'P-002', 70000, 0, '2019-07-18', 'K-001'),
@@ -258,7 +257,35 @@ INSERT INTO `transaksi_header` (`kd_transaksi`, `kd_pelanggan`, `biaya_part`, `i
 ('T-011', 'P-002', 390000, 3, '2019-07-18', 'K-001'),
 ('T-012', 'P-0004', 50000, 0, '2019-07-21', 'K-001'),
 ('T-013', 'P-0005', 350000, 1, '2019-07-21', 'K-001'),
-('T-014', 'P-0004', 0, 3, '2019-07-26', 'K-001');
+('T-014', 'P-0004', 0, 3, '2019-07-26', 'K-001'),
+('T-015', 'P-0003', 0, 2, '2019-07-26', 'K-001'),
+('T-016', '0', 250000, 0, '2019-08-03', 'K-001'),
+('T-017', '0', 120000, 0, '2019-08-03', 'K-001');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi_pembelian`
+--
+
+CREATE TABLE `transaksi_pembelian` (
+  `id_pembelian` int(11) NOT NULL,
+  `kd_part` varchar(5) NOT NULL,
+  `nm_part` varchar(20) NOT NULL,
+  `kd_pemasok` varchar(50) NOT NULL,
+  `jumlah` int(10) NOT NULL,
+  `harga_modal` int(15) NOT NULL,
+  `tanggaljam` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi_pembelian`
+--
+
+INSERT INTO `transaksi_pembelian` (`id_pembelian`, `kd_part`, `nm_part`, `kd_pemasok`, `jumlah`, `harga_modal`, `tanggaljam`) VALUES
+(1, 'P-009', 'dafid', 'PS-0002', 10, 100000, '2019-07-21 00:00:00'),
+(2, 'P-009', 'dafid', 'PS-0002', 20, 100000, '2019-07-27 00:00:00'),
+(3, 'P-009', 'dafid', 'PS-0002', 5, 100000, '2019-08-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -282,7 +309,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `kd_user`, `username`, `password`, `nama`, `level`) VALUES
 (1, 'K-001', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Dafid', 'admin'),
 (3, 'K-002', 'ii', '36347412c7d30ae6fde3742bbc4f21b9', 'tttttt', 'user'),
-(4, 'K-003', 'yaqie', '5dd13b8a34f49fcf7e6f04e100311932', 'yaqie', 'user');
+(4, 'K-003', 'yaqie', '7815696ecbf1c96e6894b779456d330e', 'yaqie', 'user');
 
 --
 -- Indexes for dumped tables
@@ -343,6 +370,12 @@ ALTER TABLE `transaksi_header`
   ADD PRIMARY KEY (`kd_transaksi`);
 
 --
+-- Indexes for table `transaksi_pembelian`
+--
+ALTER TABLE `transaksi_pembelian`
+  ADD PRIMARY KEY (`id_pembelian`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -356,7 +389,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -368,7 +401,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pemasok`
@@ -380,7 +413,7 @@ ALTER TABLE `pemasok`
 -- AUTO_INCREMENT for table `servis`
 --
 ALTER TABLE `servis`
-  MODIFY `id_servis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_servis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -392,19 +425,25 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `sparepart`
 --
 ALTER TABLE `sparepart`
-  MODIFY `id_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `transaksi_pembelian`
+--
+ALTER TABLE `transaksi_pembelian`
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
