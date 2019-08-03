@@ -49,6 +49,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'service');
         redirect("master");
     }
     function tambah_barang(){
@@ -62,12 +63,26 @@ class Master extends CI_Controller{
             'harga'=>$this->input->post('harga2'),
         );
         $this->MyModel->insertData('sparepart',$data);
+
+
+
+        $data=array(
+            'kd_part'=>$this->input->post('kd_part'),
+            'nm_part'=>$this->input->post('nm_part'),
+            'kd_pemasok'=>$this->input->post('pemasok'),
+            'jumlah'=>$this->input->post('stok'),
+            'harga_modal'=>$this->input->post('harga1'),
+            'tanggaljam'=>date("Y-m-d"),
+        );
+        $this->MyModel->insertData('transaksi_pembelian',$data);
+
         if ($this->session->userdata('LEVEL') != 'admin'){
             $this->session->set_flashdata('message', '
             <div class="alert alert-success"> Perubahan Berhasil.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
             </div>
             ');
+            $this->session->set_flashdata('tabmaster', 'part');
             redirect("dashboard");
         } else {
             $this->session->set_flashdata('message', '
@@ -75,6 +90,7 @@ class Master extends CI_Controller{
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
             </div>
             ');
+            $this->session->set_flashdata('tabmaster', 'part');
             redirect("master");
         }
     }
@@ -92,6 +108,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'pelanggan');
         redirect("master");
     }
     function tambah_pemasok(){
@@ -108,6 +125,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'pemasok');
         redirect("master");
     }
     function tambah_user(){
@@ -124,6 +142,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'user');
         redirect("master");
     }
 
@@ -140,10 +159,32 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'service');
         redirect("master");
     }
     function edit_barang(){
+        $kode = $this->input->post('kd_part');
         $id['kd_part'] = $this->input->post('kd_part');
+
+
+
+        $cek = $this->db->query("SELECT * FROM sparepart WHERE kd_part = '$kode'")->row();
+        if ($this->input->post('stok') > $cek->stok) {
+            $jumlah = $this->input->post('stok') - $cek->stok;
+            $data=array(
+                'kd_part'=>$kode,
+                'nm_part'=>$this->input->post('nm_part'),
+                'kd_pemasok'=>$this->input->post('pemasok'),
+                'jumlah'=>$jumlah,
+                'harga_modal'=>$this->input->post('harga1'),
+                'tanggaljam'=>date("Y-m-d"),
+            );
+            $this->MyModel->insertData('transaksi_pembelian',$data);
+        }
+
+
+
+
         $data=array(
             'nm_part'=>$this->input->post('nm_part'),
             'kd_pemasok'=>$this->input->post('pemasok'),
@@ -153,12 +194,15 @@ class Master extends CI_Controller{
             'harga'=>$this->input->post('harga2'),
         );
         $this->MyModel->updateData('sparepart',$data,$id);
+
+
         if ($this->session->userdata('LEVEL') != 'admin'){
             $this->session->set_flashdata('message', '
             <div class="alert alert-success"> Perubahan Berhasil.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
             </div>
             ');
+            $this->session->set_flashdata('tabmaster', 'part');
             redirect("dashboard");
         } else {
             $this->session->set_flashdata('message', '
@@ -166,6 +210,7 @@ class Master extends CI_Controller{
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
             </div>
             ');
+            $this->session->set_flashdata('tabmaster', 'part');
             redirect("master");
         }
     }
@@ -183,6 +228,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'pelanggan');
         redirect("master");
     }
     function edit_pemasok(){
@@ -199,6 +245,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'pemasok');
         redirect("master");
     }
     function edit_contact(){
@@ -218,6 +265,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'identitas');
         redirect("master");
     }
     function edit_jam(){
@@ -232,6 +280,8 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+
+        $this->session->set_flashdata('tabmaster', 'home');
         redirect("master");
     }
     function edit_user(){
@@ -248,6 +298,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'user');
         redirect("master");
     }
 
@@ -260,17 +311,20 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'service');
         redirect("master");
     }
     function hapus_barang(){
         $id['kd_part'] = $this->uri->segment(3);
         $this->MyModel->deleteData('sparepart',$id);
+        $this->MyModel->deleteData('transaksi_pembelian',$id);
         if ($this->session->userdata('LEVEL') != 'admin'){
             $this->session->set_flashdata('message', '
             <div class="alert alert-success"> Perubahan Berhasil.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
             </div>
             ');
+            $this->session->set_flashdata('tabmaster', 'part');
             redirect("dashboard");
         } else {
             $this->session->set_flashdata('message', '
@@ -278,6 +332,7 @@ class Master extends CI_Controller{
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
             </div>
             ');
+            $this->session->set_flashdata('tabmaster', 'part');
             redirect("master");
         }
     }
@@ -289,6 +344,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'pelanggan');
         redirect("master");
     }
     function hapus_pemasok(){
@@ -299,6 +355,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'pemasok');
         redirect("master");
     }
     function tidak_mengantri(){
@@ -312,6 +369,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'booking');
         redirect("master");
     }
     function ngantri(){
@@ -325,6 +383,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'booking');
         redirect("master");
     }
     function hapus_user(){
@@ -335,6 +394,7 @@ class Master extends CI_Controller{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'user');
         redirect("master");
     }
 }

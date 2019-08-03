@@ -58,7 +58,7 @@
             <div class="controls">
             <select id="kd_pelanggan" tabindex="5" class="chz-select form-control" 
 			name="kd_pelanggan" data-placeholder="Pilih Pelanggan" required>
-            <option value=""></option>
+            <option value="0"></option>
             <?php
             if(isset($data_pelanggan)){
                 foreach($data_pelanggan as $row){

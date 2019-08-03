@@ -8,6 +8,7 @@
       window.print();
       }
       </script>
+      
 <table class="table table-striped table-sm">
 <thead>
   <tr>

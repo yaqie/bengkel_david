@@ -3,13 +3,23 @@
     <div class="row">
       <div class="col-md-12">
       <br>
-      <h2>Laporan Servis Minggu Ini</h2>
+      <form action="<?= base_url('laporan/jasa_servis_tgl'); ?>" method="post">
+        <?php if ($this->uri->segment('3') != '' && $this->uri->segment('4') != '') { ?>
+        <input type="date" name="date1" value="<?= $this->uri->segment('3') ?>">
+        <input type="date" name="date2" value="<?= $this->uri->segment('4') ?>">
+        <?php } else { ?>
+        <input type="date" name="date1">
+        <input type="date" name="date2">
+        <?php } ?>
+        <button>Tampil</button>
+      </form>
       <a href="" class="btn btn-success" onclick="myFunction()">Print</a>
       <script>
       function myFunction() {
       window.print();
       }
       </script>
+      <br>
       <br>
 
 <table class="table table-striped table-sm">

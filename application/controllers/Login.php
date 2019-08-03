@@ -9,6 +9,22 @@ class Login extends CI_Controller{
 
     function landing(){
         $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();
+        $contact = $this->db->get('contact')->row();
+        $antrian = $this->db->get_where('pelanggan', array('ngantri' => '1'))->num_rows();
+        $data=array(
+            'jamoperasional'=>$jamoperasional,
+            'antrian'=>$antrian,
+            'title'=>'Landing',
+            'active_dashboard'=>'active',
+            'dt_contact'=>$contact,
+            'persediaan_suku_cadang'=>$this->MyModel->getAllDataPersediaanSC()
+        );
+        // $this->load->view('element/header',$data);
+        $this->load->view('pages/v_landing2',$data);
+        // $this->load->view('element/footer',$data);
+    }
+    function landing2(){
+        $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();
         $antrian = $this->db->get_where('pelanggan', array('ngantri' => '1'))->num_rows();
         $data=array(
             'jamoperasional'=>$jamoperasional,

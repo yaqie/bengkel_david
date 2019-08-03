@@ -70,7 +70,7 @@
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaksi</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="<?php echo site_url('penjualan/pages_tambah_penjualan')?>">Input Transaksi</a>
+              <a class="dropdown-item" href="<?php echo site_url('penjualan/pages_tambah_penjualan')?>">Input Transaksi Penjualan</a>
               <a class="dropdown-item" href="<?php echo site_url('penjualan')?>">List Transaksi</a>
             </div>
           </li>
@@ -79,6 +79,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="<?php echo site_url('laporan/persediaan_suku_cadang')?>">Persediaan Suku Cadang</a>
+              <a class="dropdown-item" href="<?php echo site_url('laporan/pembelian_sparepart')?>">Pembelian Sparepart</a>
               <a class="dropdown-item" href="<?php echo site_url('laporan/penjualan_sparepart')?>">Penjualan Sparepart</a>
               <a class="dropdown-item" href="<?php echo site_url('laporan/jasa_servis')?>">Jasa Service</a>
 			  <a class="dropdown-item" href="<?php echo site_url('laporan/pendapatan')?>">Pendapatan</a>

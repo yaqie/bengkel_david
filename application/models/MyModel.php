@@ -176,14 +176,27 @@ class MyModel extends CI_Model{
     }
     
     function getAllDataPPenjualanSp(){
-        $tgl1 = date('Y-m-d');
-        $tgl2 = date('Y-m-d', strtotime('-7 days', strtotime($tgl1)));
-        return $this->db->query("SELECT * FROM `transaksi_header` WHERE biaya_part != 0 AND tanggal_penjualan <= '$tgl1' AND tanggal_penjualan > '$tgl2'")->result();
+        return $this->db->query("SELECT * FROM `transaksi_header` WHERE biaya_part != 0 ")->result();
     }
+    function getAllDataPPenjualanSpTgl($tgl1,$tgl2){
+        $tgl2 = date('Y-m-d', strtotime('+1 days', strtotime($tgl2)));
+        return $this->db->query("SELECT * FROM `transaksi_header` WHERE biaya_part != 0 AND tanggal_penjualan >= '$tgl1' AND tanggal_penjualan <= '$tgl2'")->result();
+    }
+    
+    function getAllDataPPembelianSp(){
+        return $this->db->query("SELECT * FROM `transaksi_pembelian`")->result();
+    }
+    function getAllDataPPembelianSpTgl($tgl1,$tgl2){
+        // $tgl2 = date('Y-m-d', strtotime('+1 days', strtotime($tgl2)));
+        return $this->db->query("SELECT * FROM `transaksi_pembelian` WHERE tanggaljam >= '$tgl1' AND tanggaljam <= '$tgl2'")->result();
+    }
+
     function getAllDatajasa_servis(){
-        $tgl1 = date('Y-m-d');
-        $tgl2 = date('Y-m-d', strtotime('-7 days', strtotime($tgl1)));
-        return $this->db->query("SELECT * FROM `transaksi_header` WHERE tanggal_penjualan <= '$tgl1' AND tanggal_penjualan > '$tgl2'")->result();
+        return $this->db->query("SELECT * FROM `transaksi_header`")->result();
+    }
+    function getAllDatajasa_servisTgl($tgl1,$tgl2){
+        $tgl2 = date('Y-m-d', strtotime('+1 days', strtotime($tgl2)));
+        return $this->db->query("SELECT * FROM `transaksi_header` WHERE tanggal_penjualan >= '$tgl1' AND tanggal_penjualan <= '$tgl2'")->result();
     }
 
     function getDataPenjualan($id){		

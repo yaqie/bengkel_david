@@ -7,15 +7,15 @@
     <h3 class="text-info" style="text-align: center;margin-top:50px;">Booking Antrian</h3>
     <form action="<?= base_url('booking/simpan') ?>" method="post">
       <label for="">Nama Lengkap</label>
-      <input type="text" name="nama" class="form-control">
+      <input type="text" name="nama" class="form-control" required>
       <label for="">Nomor Hanphone</label>
-      <input type="text" name="nohp" class="form-control">
+      <input type="text" name="nohp" class="form-control" required>
       <label for="">Nomor Kendaraan</label>
-      <input type="text" name="nokendaraan" class="form-control">
+      <input type="text" name="nokendaraan" class="form-control" required>
       <label for="">Booking Untuk Tanggal</label>
-      <input type="date" name="date" class="form-control">
+      <input type="date" name="date" class="form-control" required>
       <label for="">Jam Booking</label>
-      <input type="time" name="jam" class="form-control">
+      <input type="time" name="jam" class="form-control" required>
       <br>
       <button type="submit" class="btn btn-success">Booking</button>
     </form>

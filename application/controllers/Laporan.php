@@ -11,12 +11,14 @@ class Laporan extends CI_Controller{
         $this->load->helper('currency_format_helper');
     }
 
-    function persediaan_suku_cadang(){
+    function persediaan_suku_cadang($tgl1 = '',$tgl2 =''){
+        
         $data=array(
             'title'=>'Transaksi',
             'active_penjualan'=>'active',
             'persediaan_suku_cadang'=>$this->MyModel->getAllDataPersediaanSC()
         );
+
         $this->load->view('element/header',$data);
         $this->load->view('laporan/suku_cadang');
         $this->load->view('element/footer');
@@ -26,12 +28,21 @@ class Laporan extends CI_Controller{
     }
     
     
-    function penjualan_sparepart(){
-        $data=array(
-            'title'=>'Transaksi',
-            'active_penjualan'=>'active',
-            'penjualan_sparepart'=>$this->MyModel->getAllDataPPenjualanSp()
-        );
+    function penjualan_sparepart($tgl1 = '',$tgl2 =''){
+        if ($tgl1 != '' && $tgl2 != '') {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'penjualan_sparepart'=>$this->MyModel->getAllDataPPenjualanSpTgl($tgl1,$tgl2)
+            );
+        } else {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'penjualan_sparepart'=>$this->MyModel->getAllDataPPenjualanSp()
+            );
+        }
+        
         $this->load->view('element/header',$data);
         $this->load->view('laporan/penjualan_sparepart');
         $this->load->view('element/footer');
@@ -42,15 +53,35 @@ class Laporan extends CI_Controller{
         
 
     }
-    
-    function jasa_servis(){
-        $data=array(
-            'title'=>'Transaksi',
-            'active_penjualan'=>'active',
-            'jasa_servis'=>$this->MyModel->getAllDatajasa_servis()
-        );
+
+    function penjualan_sparepart_tgl(){
+        $tgl1 = $this->input->post('date1');
+        $tgl2 = $this->input->post('date2');
+        redirect(base_url('laporan/penjualan_sparepart/'.$tgl1."/".$tgl2));
+    }
+
+
+
+
+
+
+    function pembelian_sparepart($tgl1 = '',$tgl2 =''){
+        if ($tgl1 != '' && $tgl2 != '') {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'pembelian_sparepart'=>$this->MyModel->getAllDataPPembelianSpTgl($tgl1,$tgl2)
+            );
+        } else {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'pembelian_sparepart'=>$this->MyModel->getAllDataPPembelianSp()
+            );
+        }
+        
         $this->load->view('element/header',$data);
-        $this->load->view('laporan/jasa_servis');
+        $this->load->view('laporan/pembelian_sparepart');
         $this->load->view('element/footer');
 
         $this->session->unset_userdata('limit_add_cart');
@@ -59,12 +90,59 @@ class Laporan extends CI_Controller{
         
 
     }
-    function pendapatan(){
-        $data=array(
-            'title'=>'Transaksi',
-            'active_penjualan'=>'active',
-            'pendapatan'=>$this->MyModel->getAllDatajasa_servis()
-        );
+
+    function pembelian_sparepart_tgl(){
+        $tgl1 = $this->input->post('date1');
+        $tgl2 = $this->input->post('date2');
+        redirect(base_url('laporan/pembelian_sparepart/'.$tgl1."/".$tgl2));
+    }
+    
+    function jasa_servis($tgl1 = '',$tgl2 =''){
+        
+
+        if ($tgl1 != '' && $tgl2 != '') {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'jasa_servis'=>$this->MyModel->getAllDatajasa_servisTgl($tgl1,$tgl2)
+            );
+        } else {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'jasa_servis'=>$this->MyModel->getAllDatajasa_servis()
+            );
+        }
+
+
+        $this->load->view('element/header',$data);
+        $this->load->view('laporan/jasa_servis');
+        $this->load->view('element/footer');
+
+        $this->session->unset_userdata('limit_add_cart');
+        $this->cart->destroy();
+    }
+
+    function jasa_servis_tgl(){
+        $tgl1 = $this->input->post('date1');
+        $tgl2 = $this->input->post('date2');
+        redirect(base_url('laporan/jasa_servis/'.$tgl1."/".$tgl2));
+    }
+
+    function pendapatan($tgl1 = '',$tgl2 =''){
+        if ($tgl1 != '' && $tgl2 != '') {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'pendapatan'=>$this->MyModel->getAllDatajasa_servisTgl($tgl1,$tgl2)
+            );
+        } else {
+            $data=array(
+                'title'=>'Transaksi',
+                'active_penjualan'=>'active',
+                'pendapatan'=>$this->MyModel->getAllDatajasa_servis()
+            );
+        }
         $this->load->view('element/header',$data);
         $this->load->view('laporan/pendapatan');
         $this->load->view('element/footer');
@@ -74,6 +152,12 @@ class Laporan extends CI_Controller{
 
         
 
+    }
+
+    function pendapatan_tgl(){
+        $tgl1 = $this->input->post('date1');
+        $tgl2 = $this->input->post('date2');
+        redirect(base_url('laporan/pendapatan/'.$tgl1."/".$tgl2));
     }
 
 }

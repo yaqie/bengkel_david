@@ -42,7 +42,7 @@ class Booking extends CI_Controller {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
-        redirect("booking");
+        redirect(base_url());
     }
 
 
@@ -59,6 +59,7 @@ class Booking extends CI_Controller {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'booking');
         redirect("master");
     }
     
@@ -75,6 +76,7 @@ class Booking extends CI_Controller {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'booking');
         redirect("master");
     }
     
@@ -91,6 +93,7 @@ class Booking extends CI_Controller {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'booking');
         redirect("master");
     }
     
@@ -104,6 +107,7 @@ class Booking extends CI_Controller {
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
         </div>
         ');
+        $this->session->set_flashdata('tabmaster', 'booking');
         redirect("master");
     }
 
