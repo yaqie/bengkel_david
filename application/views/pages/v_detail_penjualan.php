@@ -34,25 +34,34 @@
 	 <div class="col-4"></div>
 	 
      <div class="col-4">
+         <?php
+        //  echo $row->kd_pelanggan;
+        //  if($row->kd_pelanggan != '0' ){
+            $hitung_pelanggan = $this->db->query("SELECT * FROM pelanggan WHERE kd_pelanggan = '$row->kd_pelanggan'")->num_rows();
+            if($hitung_pelanggan != 0){
+            $pelanggan = $this->db->query("SELECT * FROM pelanggan WHERE kd_pelanggan = '$row->kd_pelanggan'")->row();
+         ?>
 		<li class="d-flex justify-content-between ">
          <div><h6 class="my-0">Customer</h6></div>
-         <span class="text-muted"><?php echo $row->nm_pelanggan?></span>
+         <span class="text-muted"><?php echo $pelanggan->nm_pelanggan ?></span>
         </li>
 		<li class="d-flex justify-content-between ">
          <div><h6 class="my-0">Alamat</h6></div>
-         <span class="text-muted"><?php echo $row->alamat?></span>
+         <span class="text-muted"><?php echo $pelanggan->alamat?></span>
         </li>
 		<li class="d-flex justify-content-between ">
          <div><h6 class="my-0">Email</h6></div>
-         <span class="text-muted"><?php echo $row->email?></span>
+         <span class="text-muted"><?php echo $pelanggan->email?></span>
         </li><br>
-		<li class="d-flex justify-content-between ">
-         <div><h6 class="my-0">Pramuniaga</h6></div>
-         <span class="text-muted"><?php echo $row->nama?></span>
-        </li>
         <?php
-        foreach($data_contact as $rows){}
-        ?>
+         }
+         foreach($data_contact as $rows){}
+            ?>
+        <li class="d-flex justify-content-between ">
+            <div><h6 class="my-0">Pramuniaga</h6></div>
+            <?php $peramuniaga = $this->db->query("SELECT * FROM user WHERE kd_user = '$row->kd_user'")->row(); ?>
+            <span class="text-muted"><?php echo $peramuniaga->nama?></span>
+        </li>
 		<li class="d-flex justify-content-between ">
          <div><h6 class="my-0">Nama Bengkel</h6></div>
          <span class="text-muted"><?php echo $rows->nama?></span>

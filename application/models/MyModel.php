@@ -201,7 +201,7 @@ class MyModel extends CI_Model{
 
     function getDataPenjualan($id){		
 		$this->db->from('transaksi_header');
-		$this->db->join('pelanggan','transaksi_header.kd_pelanggan=pelanggan.kd_pelanggan');
+		// $this->db->join('pelanggan','transaksi_header.kd_pelanggan=pelanggan.kd_pelanggan');
 		$this->db->join('user','transaksi_header.kd_user=user.kd_user');
 		$this->db->join('servis','transaksi_header.id_servis=servis.id_servis');
 		$this->db->where('transaksi_header.kd_transaksi',$id);

@@ -86,8 +86,8 @@
           </div>
           <div class="col-md-6">
                 <fieldset class="form-group">
-                    <label class="form-label">Stok</label>
-                    <input name="stok" placeholder="Jumlah Stok" class="form-control" type="number">
+                    <label class="form-label">Jumlah</label>
+                    <input name="stok" placeholder="Jumlah Beli" class="form-control" type="number">
                 </fieldset>
           </div>
           <div class="col-md-6">
@@ -149,7 +149,7 @@ if (isset($data_barang)){
                     <input name="nm_part" class="form-control" type="text" value="<?php echo $row->nm_part; ?>">
                 </fieldset>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
                 <fieldset class="form-group">
                     <label class="form-label">Pemasok</label>
                     <select name="pemasok" id="" class="form-control" required>
@@ -167,10 +167,16 @@ if (isset($data_barang)){
                 </fieldset>
           </div>
          
-          <div class="col-md-6">
+          <div class="col-md-4">
             <fieldset class="form-group">
               <label class="form-label">Stok</label>
-              <input name="stok" class="form-control" type="number" value="<?php echo $row->stok; ?>">
+              <input name="stok" class="form-control" type="number" value="<?php echo $row->stok; ?>" readonly>
+            </fieldset>
+          </div>
+          <div class="col-md-4">
+            <fieldset class="form-group">
+              <label class="form-label">Jumlah</label>
+              <input name="stok2" class="form-control" type="number" placeholder="Jumlah Beli">
             </fieldset>
           </div>
             

@@ -72,7 +72,7 @@ class Master extends CI_Controller{
             'kd_pemasok'=>$this->input->post('pemasok'),
             'jumlah'=>$this->input->post('stok'),
             'harga_modal'=>$this->input->post('harga1'),
-            'tanggaljam'=>date("Y-m-d"),
+            'tanggaljam'=>date("Y-m-d H:i:s"),
         );
         $this->MyModel->insertData('transaksi_pembelian',$data);
 
@@ -168,27 +168,23 @@ class Master extends CI_Controller{
 
 
 
-        $cek = $this->db->query("SELECT * FROM sparepart WHERE kd_part = '$kode'")->row();
-        if ($this->input->post('stok') > $cek->stok) {
-            $jumlah = $this->input->post('stok') - $cek->stok;
-            $data=array(
-                'kd_part'=>$kode,
-                'nm_part'=>$this->input->post('nm_part'),
-                'kd_pemasok'=>$this->input->post('pemasok'),
-                'jumlah'=>$jumlah,
-                'harga_modal'=>$this->input->post('harga1'),
-                'tanggaljam'=>date("Y-m-d"),
-            );
-            $this->MyModel->insertData('transaksi_pembelian',$data);
-        }
+        $data=array(
+            'kd_part'=>$kode,
+            'nm_part'=>$this->input->post('nm_part'),
+            'kd_pemasok'=>$this->input->post('pemasok'),
+            'jumlah'=>$this->input->post('stok2'),
+            'harga_modal'=>$this->input->post('harga1'),
+            'tanggaljam'=>date("Y-m-d"),
+        );
+        $this->MyModel->insertData('transaksi_pembelian',$data);
 
 
 
-
+        $jumlah = $this->input->post('stok') + $this->input->post('stok2');
         $data=array(
             'nm_part'=>$this->input->post('nm_part'),
             'kd_pemasok'=>$this->input->post('pemasok'),
-            'stok'=>$this->input->post('stok'),
+            'stok'=>$jumlah,
             'letak_barang'=>$this->input->post('letak'),
             'harga_modal'=>$this->input->post('harga1'),
             'harga'=>$this->input->post('harga2'),

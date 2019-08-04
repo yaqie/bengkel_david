@@ -30,8 +30,9 @@
     <th>Nama Sparepart</th>
     <th>Kode Pemasok</th>
     <th>Jumlah</th>
-    <th>Tanggal Jam</th>
+    <th>Tanggal</th>
     <th>Harga Modal</th>
+    <th>Subtotal</th>
   </tr>
 </thead>
 <tbody>
@@ -40,7 +41,7 @@
     if(isset($pembelian_sparepart)){
       $total = 0;
     foreach($pembelian_sparepart as $row){
-      $total += $row->harga_modal;
+      $total += $row->harga_modal * $row->jumlah;
     ?>
         <tr>
             <td><?php echo $row->id_pembelian; ?></td>
@@ -48,14 +49,15 @@
             <td><?php echo $row->nm_part; ?></td>
             <td><?php echo $row->kd_pemasok; ?></td>
             <td><?php echo $row->jumlah; ?></td>
-            <td><?php echo $row->tanggaljam; ?></td>
+            <td><?php $exp = explode(' ',$row->tanggaljam); echo $exp[0]; ?></td>
             <td><?php echo currency_format($row->harga_modal); ?></td>
+            <td><?php echo currency_format($row->harga_modal * $row->jumlah); ?></td>
         </tr>
       <?php }
   }
   ?>
   <tr>
-  <td colspan="6"><b>Total Harga</b></td>
+  <td colspan="7"><b>Total Harga</b></td>
   <td><b><?= currency_format($total) ?></b></td>
   </tr>
 </tbody>
