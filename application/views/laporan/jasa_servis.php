@@ -46,7 +46,7 @@
         <tr>
             <td><?php echo $no++; ?></td>
             <td><?php echo $row->kd_transaksi; ?></td>
-            <td><?php echo $pelanggan->nm_pelanggan; ?></td>
+            <td><?php if ($row->kd_pelanggan == '0'){ echo "-"; } else { echo $pelanggan->nm_pelanggan; }; ?></td>
             <td><?php echo $jasa_servis->nm_layanan; ?></td>
             <td><?php echo $row->tanggal_penjualan; ?></td>
             <td><?php echo currency_format($jasa_servis->harga); ?></td>

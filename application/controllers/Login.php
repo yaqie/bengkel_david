@@ -11,12 +11,15 @@ class Login extends CI_Controller{
         $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();
         $contact = $this->db->get('contact')->row();
         $antrian = $this->db->get_where('pelanggan', array('ngantri' => '1'))->num_rows();
+        $date = date("Y-m-d");
+        $booking = $this->db->query("SELECT * FROM booking WHERE tanggaljambooking >= '$date' AND status = 1")->result();
         $data=array(
             'jamoperasional'=>$jamoperasional,
             'antrian'=>$antrian,
             'title'=>'Landing',
             'active_dashboard'=>'active',
             'dt_contact'=>$contact,
+            'data_booking'=>$booking,
             'persediaan_suku_cadang'=>$this->MyModel->getAllDataPersediaanSC()
         );
         // $this->load->view('element/header',$data);

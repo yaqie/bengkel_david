@@ -66,7 +66,7 @@
         <tr>
             <td><?php echo $no++; ?></td>
             <td><?php echo $row->kd_transaksi; ?></td>
-            <td><?php echo $pelanggan->nm_pelanggan; ?></td>
+            <td><?php if ($row->kd_pelanggan == '0'){ echo "-"; } else { echo $pelanggan->nm_pelanggan; }; ?></td>
             <td><?php echo $nama_sparepart; ?></td>
             <td><?php echo $jasa_servis->nm_layanan; ?></td>
             <td><?php echo $transaksi_qty; ?></td>
