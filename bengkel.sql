@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2019 at 02:19 AM
+-- Generation Time: Aug 08, 2019 at 12:07 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -47,7 +47,10 @@ INSERT INTO `booking` (`id_booking`, `nama`, `nohp`, `nokendaraan`, `jam`, `tang
 (2, 'ahmad yahya asy-syidqie', '0895357948031', 'R 2367 GS', '12:00:00', '2019-07-27', '2019-07-26 04:47:38', 2),
 (3, 'dafid', '01928390182309', 'R 1893 US', '12:00:00', '2019-07-27', '2019-07-26 04:53:06', 1),
 (4, 'kungfret', '0895357948031', 'R 2367 GS', '20:00:00', '2019-07-26', '2019-07-26 15:20:04', -1),
-(5, 'yahya', '0895357948031', 'R 2367 GS', '12:00:00', '2019-08-03', '2019-08-03 07:15:43', 0);
+(5, 'yahya', '0895357948031', 'R 2367 GS', '12:00:00', '2019-08-03', '2019-08-03 07:15:43', 0),
+(6, 'yaqie', '0895357948031', 'R 2367 GS', '12:00:00', '2019-08-05', '2019-08-05 01:20:22', 1),
+(7, 'yahya', '0895357948031', 'R 2367 GS', '12:00:00', '2019-08-08', '2019-08-08 02:16:41', 1),
+(8, 'dafid', '08098098008', 'R 2367 GS', '14:00:00', '2019-08-09', '2019-08-08 03:39:03', 1);
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,7 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `kd_pelanggan`, `nm_pelanggan`, `alamat`, `email`, `telp`, `ngantri`) VALUES
-(2, 'P-002', 'eka', 'bekasi', 'eka@valconware.com', '089679', 0),
+(2, 'P-002', 'eka', 'bekasi', 'eka@valconware.com', '089679', 1),
 (3, 'P-0003', 'www', 'wwwwwerrww', 'dhdfh@gmail.com', '542222', 0),
 (4, 'P-0004', 'gesha', 'banyumas', 'uyuryryuye@gmail.com', '889979877', 0),
 (5, 'P-0005', 'yyyy', 'hjhjhjhjhj', 'jgjhgh@gmail.com', '000898', 0),
@@ -164,7 +167,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id_setting`, `bagian`, `text1`, `text2`, `text3`) VALUES
-(1, 'jam_operasional', 'Senin - Jumat : 08:00 - 16:00', 'Sabtu & Minggu : 08:00 - 14:00', '');
+(1, 'jam_operasional', 'Senin - Jumat : 08:00 - 16:00', 'Sabtu & Minggu : 08:00 - 14:00', '5');
 
 -- --------------------------------------------------------
 
@@ -188,7 +191,7 @@ CREATE TABLE `sparepart` (
 --
 
 INSERT INTO `sparepart` (`id_part`, `kd_part`, `nm_part`, `kd_pemasok`, `stok`, `harga_modal`, `harga`, `letak_barang`) VALUES
-(7, 'P-001', 'Oli Mesin', 'PS-001', 34, 60000, 70000, 'jas@KASknj'),
+(7, 'P-001', 'Oli Mesin', 'PS-001', 33, 60000, 70000, 'jas@KASknj'),
 (8, 'P-002', 'Lampu LED', 'PS-0002', 213, 20000, 25000, ''),
 (9, 'P-003', 'kampas rem', 'PS-0002', 86, 30000, 35000, 'vbb '),
 (10, 'P-004', 'Ban Luar', 'PS-001', 10, 0, 20000, 'gnjhn'),
@@ -196,7 +199,8 @@ INSERT INTO `sparepart` (`id_part`, `kd_part`, `nm_part`, `kd_pemasok`, `stok`, 
 (14, 'P-006', 'jiiiii', 'PS-001', 888, 0, 8787, 'gnjhn'),
 (15, 'P-007', 'obeng', 'PS-001', 990, 10000, 12000, 'Puz@3naT'),
 (16, 'P-008', 'oli enduro', 'PS-0002', 50, 35000, 40000, 'u23'),
-(17, 'P-009', 'dafid', 'PS-0002', 25, 100000, 110000, 'uaksjdn');
+(17, 'P-009', 'dafid', 'PS-0002', 31, 100000, 110000, 'uaksjdn'),
+(21, 'P-010', 'Oli Mesin Federal', 'PS-0002', 70, 35000, 45000, 'y fyu');
 
 -- --------------------------------------------------------
 
@@ -225,7 +229,8 @@ INSERT INTO `transaksi_detail` (`id_detail`, `kd_transaksi`, `kd_part`, `qty`) V
 (22, 'T-012', 'P-002', 2),
 (23, 'T-013', 'P-003', 10),
 (24, 'T-016', 'P-002', 10),
-(25, 'T-017', 'P-007', 10);
+(25, 'T-017', 'P-007', 10),
+(26, 'T-018', 'P-001', 1);
 
 -- --------------------------------------------------------
 
@@ -260,7 +265,8 @@ INSERT INTO `transaksi_header` (`kd_transaksi`, `kd_pelanggan`, `biaya_part`, `i
 ('T-014', 'P-0004', 0, 3, '2019-07-26', 'K-001'),
 ('T-015', 'P-0003', 0, 2, '2019-07-26', 'K-001'),
 ('T-016', '0', 250000, 0, '2019-08-03', 'K-001'),
-('T-017', '0', 120000, 0, '2019-08-03', 'K-001');
+('T-017', '0', 120000, 0, '2019-08-03', 'K-001'),
+('T-018', '0', 70000, 0, '2019-08-05', 'K-001');
 
 -- --------------------------------------------------------
 
@@ -285,7 +291,12 @@ CREATE TABLE `transaksi_pembelian` (
 INSERT INTO `transaksi_pembelian` (`id_pembelian`, `kd_part`, `nm_part`, `kd_pemasok`, `jumlah`, `harga_modal`, `tanggaljam`) VALUES
 (1, 'P-009', 'dafid', 'PS-0002', 10, 100000, '2019-07-21 00:00:00'),
 (2, 'P-009', 'dafid', 'PS-0002', 20, 100000, '2019-07-27 00:00:00'),
-(3, 'P-009', 'dafid', 'PS-0002', 5, 100000, '2019-08-02 00:00:00');
+(3, 'P-009', 'dafid', 'PS-0002', 5, 100000, '2019-08-02 00:00:00'),
+(8, 'P-009', 'dafid', 'PS-001', 5, 100000, '2019-08-04 00:00:00'),
+(9, 'P-009', 'dafid', 'PS-0002', 1, 100000, '2019-08-04 00:00:00'),
+(10, 'P-010', 'Oli Mesin Federal', 'PS-001', 50, 35000, '2019-08-04 21:14:30'),
+(11, 'P-010', 'Oli Mesin Federal', 'PS-001', 1, 35000, '2019-08-04 00:00:00'),
+(12, 'P-010', 'Oli Mesin Federal', 'PS-0002', 4, 35000, '2019-08-04 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -389,7 +400,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -425,19 +436,19 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `sparepart`
 --
 ALTER TABLE `sparepart`
-  MODIFY `id_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `transaksi_pembelian`
 --
 ALTER TABLE `transaksi_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
