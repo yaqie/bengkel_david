@@ -11,6 +11,10 @@
           <label class="form-label">Jam Operasional 2</label>
           <input name="jadwal2" type="text" value="<?php echo $jamoperasional->text2; ?>" class="form-control" required>
       </fieldset>
+      <fieldset class="form-group">
+          <label class="form-label">Antrian</label>
+          <input name="antrian" type="text" value="<?php echo $jamoperasional->text3; ?>" class="form-control" required>
+      </fieldset>
 </div>
 </div>
 

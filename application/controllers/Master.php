@@ -269,6 +269,7 @@ class Master extends CI_Controller{
         $data=array(
             'text1'=> $this->input->post('jadwal1'),
             'text2'=> $this->input->post('jadwal2'),
+            'text3'=> $this->input->post('antrian'),
         );
         $this->MyModel->updateData('setting',$data,$id);
         $this->session->set_flashdata('message', '

@@ -14,13 +14,16 @@
 
   <body class="text-center">
 
+
+    
+
   
 
     <form class="form-signin" action="<?= site_url('login/cek_login')?>" method="post">
-	<div class="alert alert-info text-center">
-        Level Admin= Username : admin , Password : admin <br/>
-        Level User= Username : user , Password : user
-    </div>
+    
+    <center>
+    <img src="<?= base_url('assets/')?>lancar2.png" style="height:200px;width:300px;" alt="">
+    </center>
 	<!-- NOTIF -->
   <?php echo $this->session->flashdata('message');?>
     <?php

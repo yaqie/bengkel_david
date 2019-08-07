@@ -22,9 +22,9 @@ class Login extends CI_Controller{
             'data_booking'=>$booking,
             'persediaan_suku_cadang'=>$this->MyModel->getAllDataPersediaanSC()
         );
-        // $this->load->view('element/header',$data);
+        $this->load->view('pages/header',$data);
         $this->load->view('pages/v_landing2',$data);
-        // $this->load->view('element/footer',$data);
+        $this->load->view('pages/footer',$data);
     }
     function landing2(){
         $jamoperasional = $this->db->get_where('setting', array('bagian' => 'jam_operasional'))->row();

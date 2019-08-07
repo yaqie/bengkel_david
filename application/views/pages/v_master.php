@@ -4,7 +4,11 @@
   <div class="container">
       <div class="row">
         <div class="col-md-12">
+        <center>
+        <div class="col-6">
         <?php echo $this->session->flashdata('message');?>
+        </div>
+        </center>
         
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item <?php if ($this->session->flashdata('tabmaster') == 'home' || $this->session->flashdata('tabmaster') == ''){ echo "active"; } ?>">
